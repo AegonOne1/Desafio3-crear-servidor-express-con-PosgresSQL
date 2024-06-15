@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 
-import likeMeRouter from './src/routes/likeMe.routes.js'
+import likeMeRouter from './src/routes/post.routes.js'
 
 
 const app = express();

@@ -8,6 +8,3 @@ CREATE TABLE posts (
     descripcion VARCHAR(255),
     likes INT
 );
-
-ALTER TABLE posts
-ALTER COLUMN titulo TYPE VARCHAR(255);

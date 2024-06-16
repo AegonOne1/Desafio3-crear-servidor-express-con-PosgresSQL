@@ -15,8 +15,10 @@ export const getPosts = async (req, res) =>{
 //POST
 
 export const addPost = async (req, res) => {
+    console.log(req.body)
+    const {titulo, url, descripcion, likes} = req.body
     try {
-        const newPost = await postModels.createPost(req.body)
+        const newPost = await postModels.createPost(titulo, url, descripcion, likes)
         res.status(201).json(newPost)
     } catch (error) {
         console.error(error)

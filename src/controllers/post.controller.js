@@ -19,7 +19,7 @@ export const addPost = async (req, res) => {
         const newPost = await postModels.createPost(req.body)
         res.status(201).json(newPost)
     } catch (error) {
-        console.error(err)
+        console.error(error)
         res.status(500).json({error: 'Error al crear un nuevo post'})
     }
 }

@@ -4,20 +4,30 @@ import pool from "../../database/config.js";
 //GET
 
 const getAllPost = async () => {
-    const result = await pool.query('SELECT * FROM post');
-    return result.rows;
+    try {
+        const result = await pool.query('SELECT * FROM posts');
+        return result.rows;
+    } catch (error) {
+        console.error('Error al obtener los post', error);
+        throw error;
+    }
+
 };
 
 //POST
 
-const createPost = async () => {
-    const {titulo, img, descripcion, likes} = post;
-    const result = await post.query('INSERT INTO post (titulo, img, descripcion, likes) VALUES ($1, $2, $3, $4) RETURNING *',
-        [titulo, img, descripcion, likes]
-    );
-    return result.rows[0];
+const createPost = async (titulo, img, descripcion, likes) => {
+    try {
+        const result = await pool.query('INSERT INTO posts (titulo, img, descripcion, likes) VALUES ($1, $2, $3, $4) RETURNING *',
+            [titulo, img, descripcion, likes]
+        );
+        return result.rows[0];
+    } catch (error) {
+        console.error('error al crear el post', error);
+        throw error;
+    }
 };
 
 
 
-export default {getAllPost, createPost};
+export default { getAllPost, createPost };

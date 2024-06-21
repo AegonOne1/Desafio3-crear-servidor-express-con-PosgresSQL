@@ -25,3 +25,24 @@ export const addPost = async (req, res) => {
         res.status(500).json({error: 'Error al crear un nuevo post'})
     }
 }
+
+
+//PUT
+
+export const postEdit = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const {likes } = req.body;
+        const updatePost = await postModels.editPost(id, {like: likes });
+        res.status(200).json({ post: updatePost});
+    } catch (error) {
+        console.error(error)
+        res.status(500).json({error: 'Error al actualizar el post'})
+    }
+}
+
+//DELETE
+
+// export const postDelete = async (req, res) =>{
+
+// }

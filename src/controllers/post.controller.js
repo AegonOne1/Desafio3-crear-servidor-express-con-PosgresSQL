@@ -36,10 +36,11 @@ export const addPost = async (req, res) => {
 export const postEdit = async (req, res) => {
     try {
         const { id } = req.params;
-        console.log(req.body)
+        console.log(req.body);
         const { likesadd } = req.body;
+        console.log(`ID: ${id}, Likes to add: ${likesadd}`)
         const updatePost = await postModels.editPost(id, likesadd );
-        console.log(updatePost)
+        console.log(updatePost);
         res.status(200).json({ post: updatePost });
     } catch (error) {
         console.error(error);
@@ -53,9 +54,6 @@ export const postDelete = async (req, res) => {
     try {
         const { id } = req.params;
         const deletedPost = await postModels.deletePost(id);
-        if (!deletedPost) {
-            return res.status(404).json({ error: 'Post no encontrado' });
-        }
         res.status(200).json({ message: 'Post eliminado con éxito', post: deletedPost });
     } catch (error) {
         console.error(error);

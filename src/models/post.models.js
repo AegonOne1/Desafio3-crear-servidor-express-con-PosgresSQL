@@ -33,8 +33,8 @@ const createPost = async (titulo, img, descripcion, likes = 0) => {
 const editPost = async (id, likesadd) => {
   try {
     const result = await pool.query(
-      "UPDATE posts SET likes = likes + $1 WHERE id = $2 RETURNING *",
-      [likesadd, id]
+      "UPDATE posts SET likes = likes + 1 WHERE id = $1 RETURNING *",
+      [id]
     );
     return result.rows[0];
   } catch (error) {
